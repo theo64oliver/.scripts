@@ -16,10 +16,6 @@ elif [ "$#" -lt 2 ]; then
 	echo "gpt : Use as : gpt <message> <tag> [<files_to_add>]"
 else
 	~/.scripts/clang.sh
-	if [ $? -eq 1 ]; then
-		echo "Error applying clang"
-		exit 1
-	fi
 
 	if [ "$#" -eq 2 ]; then
 		git add *
@@ -32,8 +28,7 @@ else
 
 	git commit -m "$msg"
 	if [ $? -eq 1 ]; then
-		echo -e "${RED}Cannot commit files, please check the architecture${ENDCOLOR}"
-		exit 1
+		echo -e "${GREEN}Files already commited, send Tag.${ENDCOLOR}"
 	fi
 	git tag -a "$tag" -m "$msg"
 	git push --follow-tags

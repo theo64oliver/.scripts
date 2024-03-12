@@ -11,6 +11,9 @@ apply_clang()
 
 	c=".c"
 	h=".h"
+  cc=".cc"
+  hh=".hh"
+  hxx=".hxx"
 
 	local children=($(ls $directory))
 
@@ -20,10 +23,7 @@ apply_clang()
 
 		if [ -d "$file" ]; then
 			apply_clang "$file" "${prefix}$child_prefix"
-		elif [ "${file#*"$c"}" != "$file" ]; then
-			clang-format -style=file -i "$file""${prefix}$child_prefix"
-			echo -e "${BLUE}"Clang Applied to ""$file""${prefix}$child_prefix"${ENDCOLOR}"
-		elif [ "${file#*"$h"}" != "$file" ]; then
+		elif [[ "$file" == *"$c" ]] || [[ "$file" == *"$h" ]] || [[ "$file" == *"$cc" ]] || [[ "$file" == *"$hh" ]] || [[ "$file" == *"$hxx" ]]; then
 			clang-format -style=file -i "$file""${prefix}$child_prefix"
 			echo -e "${BLUE}"Clang Applied to ""$file""${prefix}$child_prefix"${ENDCOLOR}"
 		fi
