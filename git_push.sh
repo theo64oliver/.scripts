@@ -11,10 +11,10 @@ if [ "$msg" = "help" ]; then
 	# Help status, send the help page of gp
 	cat ~/.scripts/help_gp.txt
 	exit 0
-elif [ "$#" -lt 2 ]; then 
+elif [ "$#" -lt 1 ]; then 
 	echo "gp: Use: gp <message> [<files_to_add>]"
 else
-	if [ "$#" -eq 2 ]; then
+	if [ "$#" -eq 1 ]; then
 		git add *
 	else
 		shift 2
