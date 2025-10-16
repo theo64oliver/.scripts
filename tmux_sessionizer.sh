@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/Desktop/ING2/ ~/Desktop/ING3/ -mindepth 1 -type d | fzf)
+    selected=$(find ~/Desktop/ -mindepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
